@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // JavaScript
+    window.onload = function() {
+      var cart = JSON.parse(localStorage.getItem('cart')) || [];
+      var cartContainer = document.querySelector('.cart-container');
+
+      cart.forEach(function(item) {
+        var productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        var imageElement = document.createElement('img');
+        imageElement.src = item.image;
+        productElement.appendChild(imageElement);
+
+        var nameElement = document.createElement('h3');
+        nameElement.textContent = item.product;
+        productElement.appendChild(nameElement);
+
+        var quantityElement = document.createElement('p');
+        quantityElement.textContent = 'Cantitate: ' + item.quantity;
+        productElement.appendChild(quantityElement);
+
+        var dateElement = document.createElement('p');
+        dateElement.textContent = 'Adăugat în coș la: ' + item.date;
+        productElement.appendChild(dateElement);
+
+        cartContainer.appendChild(productElement);
+      });
+      console.log(item.image);
+      // Add the clear cart button
+      var clearCartButton = document.createElement('button');
+      clearCartButton.textContent = 'Golește coșul';
+      clearCartButton.addEventListener('click', function() {
+        // Clear the cart in local storage
+        localStorage.removeItem('cart');
+
+        // Clear the cart container in the HTML
+        cartContainer.innerHTML = '';
+
+        // Update the total
+        updateTotal();
+      });
+    document.body.appendChild(clearCartButton);
+
+      // Initial update of the total
+      updateTotal();
+    };
+
+    function updateTotal() {
+      var cart = JSON.parse(localStorage.getItem('cart')) || [];
+      var total = 0;
+
+      cart.forEach(function(item) {
+        // Assuming item.price is the price of the product
+        total += item.quantity * item.price;
+      });
+
+      // Display the total in the HTML
+      var totalElement = document.getElementById('total');
+      totalElement.textContent = 'Total: $' + total.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="imagini/logo.png" alt="Furniture Store Logo" class="logo">
+    <nav>
+        <ul>
+            
+            <li><a href="home.html">Acasa</a></li>
+            <li>
+            <div class="dropdown">
+                <button class="dropbtn">Produse 
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="pa">Mese</a>
+                  <a href="pagina_scaune.html">Scaune</a>
+                  <a href="#">Dulapuri</a>
+                </div>
+            </div> 
+            </li>
+            <li><a href="despre.html">Despre noi</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Conecteaza-te</a></li>
+        </ul>
+    </nav>
+</header>
+    <h1>Shopping Cart</h1>
+    <button id="clear-cart">Clear Cart</button>
+    <h2>Cart</h2>
+    <div class="cart-container"></div>
+    
+    <div id="total">Total: $0.00</div>
+<script src="script.js"></script>
+</body>
+</html>

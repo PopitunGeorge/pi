@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Shop Now</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .category {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      text-align: center;
+      color: #fdfcfc;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /*background-image: url('imagini/canapea1.jpg');*/
+      background-size: cover;
+      background-position: center;
+    }
+
+    .category:hover {
+      transform: scale(1.1);
+      background-color: #bbb;
+    }
+
+    .parte {
+      justify-content: space-around;
+      display: flex;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="imagini/logo.png" alt="Furniture Store Logo" class="logo">
+    <nav>
+        <ul>
+            
+            <li><a href="home.html">Acasa</a></li>
+            <li>
+            <div class="dropdown">
+                <button class="dropbtn">Produse 
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">Mese</a>
+                  <a href="#">Scaune</a>
+                  <a href="#">Dulapuri</a>
+                </div>
+            </div> 
+            </li>
+            <li><a href="despre.html">Despre noi</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Conecteaza-te</a></li>
+            <a id="cos" href="cos.html"><i class="fas fa-shopping-cart"></i> Cos de cumpărături</a>
+        </ul>
+    </nav>
+</header>
+  <div class="parte">
+    <a href="pagina_paturi.html"><div class="category">Paturi</div></a>
+    <a href="pagina_canapele.html"><div class="category">Canapele</div></a>
+    <a href="pagina_scaune.html"><div class="category">Scaune</div></a>
+  </div>
+  <div class="parte">
+    <a href="pagina_biblioteci.html"><div class="category">Biblioteci si polite</div></a>
+    <a href="pagina_paturi.html"><div class="category">Mese</div></a>
+    <a href="pagina_paturi.html"><div class="category">Corpuri si vitrine</div></a>
+  </div>
+</body>
+</html>

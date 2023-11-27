@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Furniture Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+</head>
+<body>
+    <header>
+        <img src="imagini/logo.png" alt="Furniture Store Logo" class="logo">
+        <nav>
+            <ul>
+                
+                <li><a href="#">Acasa</a></li>
+                <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Produse 
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="#">Mese</a>
+                      <a href="#">Scaune</a>
+                      <a href="#">Dulapuri</a>
+                    </div>
+                </div> 
+                </li>
+                <li><a href="despre.html">Despre noi</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Conecteaza-te</a></li>
+                <a id="cos" href="cos.html"><i class="fas fa-shopping-cart"></i> Cos de cumpărături</a>
+            </ul>
+        </nav>
+    </header>
+
+    <button id="sort-by-price">Sortează după preț</button>
+    <h2 id="featured-title">Featured Products</h2>
+    <section id="featured-products">
+        
+        <div class="product">
+            <img src="imagini/scaun6.jpg" alt="Product 1">
+            <h3>Pat verde</h3>
+            <p class="price">700 </p>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/scaun5.jpg" alt="Product 2">
+            <h3>Pat gri de piele</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">200 </p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/scaun4.jpg" alt="Product 3">
+            <h3>pat mhmm</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p>500</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+    <section id="featured-products">
+        <div class="product">
+            <img src="imagini/scaun3.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">9300 </p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/scaun2.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">1300 </p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/scaun1.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">450</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+    <section id="featured-products">
+        <div class="product">
+            <img src="imagini/scaun3.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">340</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/scaun2.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>  
+        <div class="product">
+            <img src="imagini/scaun7.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" class="quantity" value="1" min="1"></p>
+            <p class="price">2300</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form>
+            <input type="email" placeholder="Enter your email address">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2022 Furniture Store. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+<script>
+
+document.querySelectorAll('.add-to-cart').forEach(function(button, index) {
+            button.addEventListener('click', function() {
+                var quantity = document.querySelectorAll('.quantity')[index].value;
+                var product = document.querySelectorAll('.product h3')[index].textContent;
+                var price = document.querySelectorAll('.product .price')[index].textContent;
+
+                var cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ product: product, quantity: quantity, price: price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+            });
+        });
+
+        document.querySelectorAll('.quantity').forEach(function(input, index) {
+            input.addEventListener('change', function() {
+                var basePrice = parseFloat(document.querySelectorAll('.product .price')[index].textContent);
+                var quantity = this.value;
+
+                var totalPrice = basePrice * quantity;
+
+                document.querySelectorAll('.product .price')[index].textContent = totalPrice;
+            });
+        });
+
+        document.querySelector('#sort-by-price').addEventListener('click', function() {
+    var productsContainer = document.querySelector('#featured-products');
+    var products = Array.from(productsContainer.getElementsByClassName('product'));
+
+    products.sort(function(a, b) {
+        var priceA = parseFloat(a.querySelector('.price').textContent.replace(/[^0-9\.]/g, ''));
+        var priceB = parseFloat(b.querySelector('.price').textContent.replace(/[^0-9\.]/g, ''));
+        return priceA - priceB;
+    });
+
+    products.forEach(function(product) {
+        productsContainer.appendChild(product);
+    });
+});
+    </script>
+</body>
+</html>

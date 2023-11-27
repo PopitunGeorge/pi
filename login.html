@@ -1,0 +1,108 @@
+<!-- FILEPATH: /C:/Users/Alexandru/OneDrive/Desktop/pi/login.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conectare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        form input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        form input:focus {
+            border-color: #007eff;
+        }
+        
+        form input[type="submit"] {
+            background-color: #007eff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        form input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #007eff;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conectare</h1>
+    <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Parola:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <input type="submit" value="Conectare">
+    </form>
+    
+    <a href="home.html">Inapoi la Home</a>
+</body>
+</html>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+    // Previne trimiterea formularului
+    event.preventDefault();
+
+    // Preluăm datele de autentificare din formular
+    var username = document.querySelector('input[name="username"]').value;
+    var password = document.querySelector('input[name="password"]').value;
+
+    // Verificăm datele de autentificare
+    // Într-o aplicație reală, această verificare ar trebui să fie mai complexă
+    if (username && password) {
+        // Dacă datele de autentificare sunt valide, le stocăm în localStorage
+        localStorage.setItem('username', username);
+
+        // Redirecționăm utilizatorul la pagina home.html
+        window.location.href = 'home.html';
+    } else {
+        // Dacă datele de autentificare nu sunt valide, afișăm un mesaj de eroare
+        alert('Vă rugăm să introduceți un nume de utilizator și o parolă.');
+    }
+});
+</script>

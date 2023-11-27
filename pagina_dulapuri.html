@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Furniture Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+</head>
+<body>
+    <header>
+        <img src="imagini/logo.png" alt="Furniture Store Logo" class="logo">
+        <nav>
+            <ul>
+                
+                <li><a href="#">Acasa</a></li>
+                <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Produse 
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="#">Mese</a>
+                      <a href="#">Scaune</a>
+                      <a href="#">Dulapuri</a>
+                    </div>
+                </div> 
+                </li>
+                <li><a href="despre.html">Despre noi</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Conecteaza-te</a></li>
+                <a id="cos" href="cos.html"><i class="fas fa-shopping-cart"></i> Cos de cumpărături</a>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <h2 id="featured-title">Featured Products</h2>
+    <section id="featured-products">
+        
+        <div class="product">
+            <img src="imagini/dulap1.jpg" alt="Product 1">
+            <h3>Pat verde</h3>
+            <p id="price">Pret: 2300 </p>
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/dulap2.jpg" alt="Product 2">
+            <h3>Pat gri de piele</h3>
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <p>Pret: 4200</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/dulap3.jpg" alt="Product 3">
+            <h3>pat mhmm</h3>
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <p>Pret: $500</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+    <section id="featured-products">
+        <div class="product">
+            <img src="imagini/dulap4.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <p>Pret: $500</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/dulap5.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <p>Pret: $500</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+        <div class="product">
+            <img src="imagini/dulap6.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Cantitate: <input type="number" id="quantity" value="1" min="1"></p>
+            <p>Pret: $500</p>
+            <button class="add-to-cart">Adauga in cos</button>
+            <a href="#" class="btn">View Details</a>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form>
+            <input type="email" placeholder="Enter your email address">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2022 Furniture Store. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+<script>
+
+// JavaScript
+// JavaScript
+document.querySelectorAll('.add-to-cart').forEach(function(button, index) {
+  button.addEventListener('click', function() {
+    var quantity = document.querySelectorAll('#quantity')[index].value; // Modificare aici
+    var product = document.querySelectorAll('.product h3')[index].textContent;
+
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ product: product, quantity: quantity });
+    localStorage.setItem('cart', JSON.stringify(cart));
+  });
+});
+// JavaScript
+document.getElementById('quantity').addEventListener('change', function() {
+  var basePrice = 500; // The base price of the product
+  var quantity = this.value; // The quantity input by the user
+
+  var totalPrice = basePrice * quantity;
+
+  document.getElementById('price').textContent = 'Pret: $' + totalPrice;
+});
+
+</script>
+</body>
+</html>
