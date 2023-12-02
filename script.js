@@ -1,63 +1,65 @@
+// Select all add-to-cart buttons
+var addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-// Get the add to cart button element
-const addToCartButton = document.getElementById('add-to-cart');
+// Add event listener to each button
+addToCartButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Get the parent product div
+        var product = this.closest('.product');
 
-// Add click event listener to the button
-addToCartButton.addEventListener('click', addToCart);
+        // Get the product details
+        var productDetails = {
+            name: product.querySelector('.product-name').textContent,
+            quantity: parseInt(product.querySelector('.quantity').value),
+            price: parseInt(product.querySelector('.price').textContent),
+            addedAt: new Date().toLocaleString()
+        };
 
-// Function to add the product to the cart
-function addToCart() {
-  // Get the product details
-  const productName = document.getElementById('product-name').innerText;
-  const productPrice = parseFloat(document.getElementById('product-price').innerText);
-  const productImage = document.getElementById('product-image').src;
-  const productDescription = document.getElementById('product-description').innerText;
+        // Get the cart from local storage
+        var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Create a new cart item element
-  const cartItem = document.createElement('div');
-  cartItem.classList.add('cart-item');
+        // Add the product to the cart
+        cart.push(productDetails);
 
-  // Create elements for product details
-  const nameElement = document.createElement('h3');
-  nameElement.innerText = productName;
-  cartItem.appendChild(nameElement);
+        // Save the cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-  const priceElement = document.createElement('p');
-  priceElement.innerText = `Price: $${productPrice.toFixed(2)}`;
-  cartItem.appendChild(priceElement);
+        // Update the total
+        updateTotal();
 
-  const imageElement = document.createElement('img');
-  imageElement.src = productImage;
-  cartItem.appendChild(imageElement);
+        // Display the added product details
+        var addedProductElement = document.getElementById('added-product');
+        addedProductElement.textContent = 'Produs adăugat: ' + productDetails.name + ', Cantitate: ' + productDetails.quantity + ', Adăugat în coș la: ' + productDetails.addedAt;
+    });
+});
 
-  const descriptionElement = document.createElement('p');
-  descriptionElement.innerText = productDescription;
-  cartItem.appendChild(descriptionElement);
+function updateTotal() {
+    // Get the cart from local storage
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Add the cart item to the cart container
-  const cartContainer = document.getElementById('cart-container');
-  cartContainer.appendChild(cartItem);
+    // Calculate the total
+    var total = 0;
+    cart.forEach(function(item) {
+        total += item.quantity * item.price;
+    });
 
-  // Update the total price
-  const totalPriceElement = document.getElementById('total-price');
-  const currentTotalPrice = parseFloat(totalPriceElement.innerText.replace('$', ''));
-  const newTotalPrice = currentTotalPrice + productPrice;
-  totalPriceElement.innerText = `$${newTotalPrice.toFixed(2)}`;
+    // Display the total in the HTML
+    var totalElement = document.getElementById('total');
+    totalElement.textContent = 'Total: ' + total + ' lei';
 }
-//creaza un scriptul care sterge toate produsele din cos
-// Create a button
-var clearCartButton = document.createElement('button');
-clearCartButton.textContent = 'Golește coșul';
+///Stergere cos//////////////////////////////
+// Select the clear-cart button
+var clearCartButton = document.getElementById('clear-cart');
 
-// Add an event listener to the button
+// Add event listener to the button
 clearCartButton.addEventListener('click', function() {
     // Clear the cart in local storage
     localStorage.removeItem('cart');
 
-    // Clear the cart container in the HTML
-    var cartContainer = document.querySelector('.cart-container');
-    cartContainer.innerHTML = '';
-});
+    // Update the total
+    updateTotal();
 
-// Add the button to the body of the document
-document.body.appendChild(clearCartButton);
+    // Clear the added product details
+    var addedProductElement = document.getElementById('added-product');
+    addedProductElement.textContent = '';
+});

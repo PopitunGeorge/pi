@@ -226,9 +226,31 @@ nav ul {
   /* CSS */
 #featured-products {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   }
+  #sort-by-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+  #butoane{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
   
   #featured-products > div {
     flex: 1;
@@ -281,12 +303,15 @@ nav ul {
   }
   
   .dropbtn {
-    background-color: #616161; /* culoarea de fundal a butonului drop-down */
-    color: black; /* culoarea textului butonului drop-down */
+    background-color: #555;
+    color: rgb(255, 255, 255); /* culoarea textului butonului drop-down */
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    top: -10px;
   }
   
   .dropbtn:hover, .dropbtn:focus {
